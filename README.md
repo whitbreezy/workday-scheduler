@@ -1,4 +1,4 @@
-# <Workday Scheduler>
+# Workday Scheduler
 
 ## Description
 
