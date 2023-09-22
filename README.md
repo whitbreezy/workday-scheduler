@@ -10,6 +10,7 @@ Click the link below to go to the project's github repo and clone the code to yo
 https://github.com/whitbreezy/workday-scheduler
 
 Click the link below to access the live application:
+https://whitbreezy.github.io/workday-scheduler/
 
 ## Usage
 
