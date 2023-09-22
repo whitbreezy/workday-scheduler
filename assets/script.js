@@ -15,15 +15,8 @@ $(function () {
     localStorage.setItem(scheduleItem.hour, JSON.stringify(scheduleItem.description));
 
   });
- 
-  
-  
-  //
-  // TODO: Add code to apply the past, present, or future class to each time
-  // block by comparing the id to the current hour. HINTS: How can the id
-  // attribute of each time-block be used to conditionally add or remove the
-  // past, present, and future classes? How can Day.js be used to get the
-  // current hour in 24-hour time?
+
+  //create variables 
   var timeBlock = $('.time-block');
   var hour9 = $('#hour-9');
   var hour10 = $('#hour-10');
@@ -46,17 +39,39 @@ $(function () {
   hour17.attr('data-hour', 17);
 
   console.log(dayjs().hour());
-  console.log(timeBlock.attr('data-hour'))
-//for loop through all hours with if statement inside
-  if (timeBlock.attr('data-hour') < dayjs().hour()){
-    
-    timeBlock.addClass('past');
-  }
+  console.log(timeBlock.attr('data-hour'));
 
-  //
-  // TODO: Add code to get any user input that was saved in localStorage and set
-  // the values of the corresponding textarea elements. HINT: How can the id
-  // attribute of each time-block be used to do this?
+//put hours into array and loop through array
+var timeBlocks = [
+  hour9,
+  hour10,
+  hour11,
+  hour12,
+  hour13,
+  hour14,
+  hour15,
+  hour16,
+  hour17
+]
+//loop through timeblocks and cheeck if their data-hour attribute is >, <, or === to
+//the current hour of the day
+for(var i=0; i < timeBlocks.length; i++){
+
+  var dataHour = timeBlocks[i].attr('data-hour');
+
+  if (timeBlocks[i].attr('data-hour') == dayjs().hour()){
+    timeBlocks[i].addClass('present');
+
+  }else if(timeBlocks[i].attr('data-hour') < dayjs().hour()){
+    timeBlocks[i].addClass('past');
+
+  }else if (timeBlocks[i].attr('data-hour') > dayjs().hour()){
+    timeBlocks[i].addClass('future');
+
+  }
+}
+//if there are keys in local storage that match the time block's id, the text area will be set
+//to the stored key's value
 
   $('#hour-9 .description').val(localStorage.getItem('hour-9'));
   $('#hour-10 .description').val(localStorage.getItem('hour-10')); 
@@ -67,8 +82,8 @@ $(function () {
   $('#hour-15 .description').val(localStorage.getItem('hour-15'));
   $('#hour-16 .description').val(localStorage.getItem('hour-16'));
   $('#hour-17 .description').val(localStorage.getItem('hour-17'));
-  //
-  // TODO: Add code to display the current date in the header of the page.
+  
+  // current date displayed at the top 
   var today = dayjs();
   $('#currentDay').text(today.format('dddd, MMMM D, YYYY'));
 });
